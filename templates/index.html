@@ -1,0 +1,20 @@
+<!-- <h1>Olá, {{ nome }}</h1> -->
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Flask Projeto{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Página Inicial</h1>
+    <h1>Olá, {% if name %}{{ name }}{% else %}Desconhecido{% endif %}</h1>
+    {% if not known %}
+    <p>Please to meet you</p>
+    {% else %}
+    <p>Happy to see you again!</p>
+    {% endif %}
+    <p>A data e hora local é {{ moment(current_time).format('LLL') }}</p>
+    <p>Feito há {{ moment(current_time).fromNow(refresh=True) }}</p>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
